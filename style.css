@@ -4,7 +4,7 @@ Theme URi: #
 Version: 1.0.0
 Author: Pobittra Roy
 Author URi: #
-text domain: practise-wordpress-themeDevelopment
+text domain: PobiRoy
 requires at least: 5.0
 requires PHP: 7.0
 description: This is a practise theme development project
@@ -13,3 +13,10 @@ license: GNU General Public License v2 or later
 license URi: #
 
 =================================*/
+
+
+
+/* 
+body {
+    background-color: red;
+} */
