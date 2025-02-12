@@ -19,9 +19,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href=""><img src="<?php echo get_theme_mod('pobi_logo') ?>./img/logo.jpg" alt=""></a>
+                    <a href=""><img src="<?php echo get_theme_mod('pobi_logo') ?>" alt=""></a>
                 </div>
-                <div class="col-md-9">
+                <div class=" col-md-9">
                 </div>
             </div>
         </div>
