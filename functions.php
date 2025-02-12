@@ -58,8 +58,23 @@ function pobi_customization_register($wp_customize)
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "pobi_logo", array('label' => 'Upload Logo', 'PobiRoy', 'section' => 'pobi_header_area', 'setting' => 'pobi_logo', 'description' => 'You can upload your logo')));
 };
 
+
+
+
 add_action('customize_register', 'pobi_customization_register');
 
+
+//register main menu
+register_nav_menu('main_menu', __('Main Menu', 'PobiRoy'));
+
+
+// gooogle fonts enqueue
+function pobi_add_google_fonnts()
+{
+    wp_enqueue_style('pobi-google-fonts', 'https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap', false);
+}
+
+add_action('wp_enqueue_scripts', 'pobi_add_google_fonnts');
 
 
 
@@ -129,4 +144,34 @@ add_action('customize_register', 'pobi_customization_register');
 // }
 
 // Hook the function to the WordPress Customizer
-add_action('customize_register', 'pobi_customization_register');
+// add_action('customize_register', 'pobi_customization_register'); 
+
+class Custom_Nav_Walker extends Walker_Nav_Menu
+{
+    function start_lvl(&$output, $depth = 0, $args = null)
+    {
+        $output .= '<ul class="submenu">';
+    }
+
+    function end_lvl(&$output, $depth = 0, $args = null)
+    {
+        $output .= '</ul>';
+    }
+
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+    {
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item));
+
+        if (in_array('menu-item-has-children', $classes)) {
+            $output .= '<li class="' . esc_attr($class_names) . '"><a href="' . esc_url($item->url) . '">' . $item->title . ' ▼</a>';
+        } else {
+            $output .= '<li class="' . esc_attr($class_names) . '"><a href="' . esc_url($item->url) . '">' . $item->title . '</a>';
+        }
+    }
+
+    function end_el(&$output, $item, $depth = 0, $args = null)
+    {
+        $output .= '</li>';
+    }
+}

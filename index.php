@@ -22,6 +22,17 @@
                     <a href=""><img src="<?php echo get_theme_mod('pobi_logo') ?>" alt=""></a>
                 </div>
                 <div class=" col-md-9">
+                    <div class="nav-container">
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'main_menu',
+                            'menu_id' => 'nav',
+                            'container' => false,
+                            'menu_class' => 'nav',
+                            'walker' => new Custom_Nav_Walker()
+                        ));
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
