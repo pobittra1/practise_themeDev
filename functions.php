@@ -53,7 +53,7 @@ function pobi_customization_register($wp_customize)
 {
     $wp_customize->add_section("pobi_header_area", array('title' => __('Header Area', 'PobiRoy'), 'description' => 'You can update here your logo'));
 
-    $wp_customize->add_setting("pobi_logo", array('default' => get_template_directory_uri() . '/img/logo.jpg'));
+    $wp_customize->add_setting("pobi_logo", array('default' => get_template_directory_uri() . '/img/logo.png'));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "pobi_logo", array('label' => 'Upload Logo', 'PobiRoy', 'section' => 'pobi_header_area', 'setting' => 'pobi_logo', 'description' => 'You can upload your logo')));
 };
